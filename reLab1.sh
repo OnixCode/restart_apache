@@ -2,6 +2,7 @@
 
 CONFIG="$1"
 COMMAND="$2"
+BOOLEAN="false"
 
 if [ $# -ne 2 ]
 then
@@ -14,13 +15,21 @@ VHOSTS_PATH=/etc/apache2/sites-available/*.conf
 
 for FILENAME in ${VHOSTS_PATH}
 do  
-    PATHNAME=${FILENAME:29:-5}
-        if [ "$CONFIG" != "${PATHNAME}" ]
+     echo $PATHNAME
+        if [ "$CONFIG" == "${PATHNAME}" ]
         then
-            echo ${FILENAME:29:-5}   
+            BOOLEAN="true"
+            echo $BOOLEAN
         fi
 done
-echo "ERROR: "$CONFIG" is not a valid virtual-host file."
+
+
+if [ $BOOLEAN == "false" ]
+then    echo "ERROR: "$CONFIG" is not a valid virtual-host file."
+        for FILENAME in ${VHOSTS_PATH}
+        do echo ${FILENAME:29}
+        done
+fi
 exit 1
 
 if [ "$COMMAND" == "reload" ] || [ "$COMMAND" == "restart" ]
@@ -40,4 +49,3 @@ else
     echo "ERROR: $COMMAND is not a valid service directive {reload|restart}"
     exit 1
 fi
-
