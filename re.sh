@@ -6,7 +6,7 @@ COMMAND="$2"
 #Require two parameters to proceed
 if [ $# -ne 2 ]
 then
-    echo "$0 requires two parameters {virtual-host} {restart|reload}"
+    echo "ERROR: $0 requires two parameters {virtual-host} {restart|reload}"
     exit 1
 fi
 #Only allow reload of restart for COMMAND
