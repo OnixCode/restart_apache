@@ -24,13 +24,14 @@ fi
 VHOSTS_PATH=/etc/apache2/sites-available/*.conf 
 
 # Set variable FILENAME to iterate through list of configuration files
-#in VHOSTS_PATH. 
+# in VHOSTS_PATH. 
 for FILENAME in ${VHOSTS_PATH}
 do
-# Must seperate the data from VHOSTS_PATH into FILENAME in order to diplay the
+# Must seperate the data from VHOSTS_PATH into FILENAME in order to display the
 # data correctly 
     if [ -z "$VALID_VHOSTS" ]
         then
+        #Only displays filename section of the path
             VALID_VHOSTS="${FILENAME:29:-5}"
         else
         VALID_VHOSTS="${VALID_VHOSTS}|${FILENAME:29:-5}"
